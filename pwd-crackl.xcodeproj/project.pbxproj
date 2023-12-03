@@ -1,0 +1,167 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9897991B2B1CED0600C053FF /* pwd_crackl.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9897991A2B1CED0600C053FF /* pwd_crackl.metal */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		989799172B1CED0600C053FF /* pwd-crackl.metallib */ = {isa = PBXFileReference; explicitFileType = "archive.metal-library"; includeInIndex = 0; path = "pwd-crackl.metallib"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9897991A2B1CED0600C053FF /* pwd_crackl.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = pwd_crackl.metal; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		989799102B1CED0600C053FF = {
+			isa = PBXGroup;
+			children = (
+				989799192B1CED0600C053FF /* pwd-crackl */,
+				989799182B1CED0600C053FF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		989799182B1CED0600C053FF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				989799172B1CED0600C053FF /* pwd-crackl.metallib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		989799192B1CED0600C053FF /* pwd-crackl */ = {
+			isa = PBXGroup;
+			children = (
+				9897991A2B1CED0600C053FF /* pwd_crackl.metal */,
+			);
+			path = "pwd-crackl";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		989799162B1CED0600C053FF /* pwd-crackl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9897991E2B1CED0600C053FF /* Build configuration list for PBXNativeTarget "pwd-crackl" */;
+			buildPhases = (
+				989799152B1CED0600C053FF /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "pwd-crackl";
+			productName = "pwd-crackl";
+			productReference = 989799172B1CED0600C053FF /* pwd-crackl.metallib */;
+			productType = "com.apple.product-type.metal-library";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		989799112B1CED0600C053FF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					989799162B1CED0600C053FF = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 989799142B1CED0600C053FF /* Build configuration list for PBXProject "pwd-crackl" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 989799102B1CED0600C053FF;
+			productRefGroup = 989799182B1CED0600C053FF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				989799162B1CED0600C053FF /* pwd-crackl */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		989799152B1CED0600C053FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9897991B2B1CED0600C053FF /* pwd_crackl.metal in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9897991C2B1CED0600C053FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9897991D2B1CED0600C053FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9897991F2B1CED0600C053FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		989799202B1CED0600C053FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		989799142B1CED0600C053FF /* Build configuration list for PBXProject "pwd-crackl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9897991C2B1CED0600C053FF /* Debug */,
+				9897991D2B1CED0600C053FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9897991E2B1CED0600C053FF /* Build configuration list for PBXNativeTarget "pwd-crackl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9897991F2B1CED0600C053FF /* Debug */,
+				989799202B1CED0600C053FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 989799112B1CED0600C053FF /* Project object */;
+}
