@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "BD1E3E29-C498-4920-9C59-49549C13E49E"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4FE4424F-D2F2-4022-AC23-06B70485946F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pwdcrack/MetalCracker.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "-verifyResults"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D9973D34-618D-429E-A139-5399F984D361"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pwdcrack/GPUBruteForceEngine.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "-sendComputeCommand"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D9973D34-618D-429E-A139-5399F984D361 - b4e26da37e976f8b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GPUBruteForceEngine sendComputeCommand]"
+                  moduleName = "pwdcrack"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jacobinwald/Desktop/pwd-crackl/pwdcrack/GPUBruteForceEngine.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "708">
+               </Location>
+               <Location
+                  uuid = "D9973D34-618D-429E-A139-5399F984D361 - b4e26da37e976f8b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GPUBruteForceEngine sendComputeCommand]"
+                  moduleName = "pwdcrack"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jacobinwald/Desktop/pwd-crackl/pwdcrack/GPUBruteForceEngine.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "636">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
