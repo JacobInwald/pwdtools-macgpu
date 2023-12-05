@@ -1,6 +1,6 @@
 # pwdtools-macgpu
 
-The `pwdtools-gpu` project is a GPU-based password cracking tool that utilizes the Metal framework for parallel computations. It provides a brute force engine for cracking passwords.
+A GPU-accelerated password cracking tool that utilizes the Metal framework for parallel computations. It provides a brute force engine for cracking passwords.
 
 ## Features
 
