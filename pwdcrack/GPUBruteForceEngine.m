@@ -145,9 +145,9 @@
         timespec_get(&after, TIME_UTC);
         diff_av = (after.tv_sec - before.tv_sec);
         time_left = (diff_av / i) * (divisions-i);
-        words_per_sec = indexes[0] / diff_av;
+        words_per_sec = (indexes[0] / diff_av) / 1000000;
         
-        printf("Pass %lu | Tested %lu words | %f done | est. %.2fs remaining | rate of %.2f words/s\n",
+        printf("Pass %lu | Tested %lu words | %f done | est. %.2fs remaining | @ %.2f MH/s\n",
                 i, indexes[0], (double)i/divisions, time_left, words_per_sec);
     }
     
