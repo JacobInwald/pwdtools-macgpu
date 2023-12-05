@@ -9,6 +9,9 @@
 #import "GPUBruteForceEngine.h"
 #include "constants.h"
 #include "time.h"
+#include <stdlib.h>
+#include <curses.h>
+
 
 // The number of floats in each array, and the size of the arrays in bytes.
 
@@ -115,17 +118,17 @@
     total_size--;
     
     unsigned long* indexes = _mBufferIndices.contents;
-    
-    printf("%lu words to check\n", total_size);
-    
     unsigned long divisions = total_size / _gridSize;
     
-    printf("divisions: %lu\n", divisions);
+    printf("--------        PASSWORD CRACKER        -------\n");
+    printf("Info | total words: %lu | split into %lu divisions\n | terminates at password length %u", total_size, divisions, _word_length);
+    printf("\n");
     
     struct timespec before, after;
     double time_left, diff_av, words_per_sec;
     
     timespec_get(&before, 1);
+    
     for(unsigned long i = 1; i <= divisions+1; i++) {
         
         // End the compute pass._mBufferIndices.contents[0]);
@@ -147,8 +150,14 @@
         time_left = (diff_av / i) * (divisions-i);
         words_per_sec = (indexes[0] / diff_av) / 1000000;
         
+        //remove line
+        fputs("\033[A\033[2K",stdout);
+        rewind(stdout);
+        
         printf("Pass %lu | Tested %lu words | %f done | est. %.2fs remaining | @ %.2f MH/s\n",
-                i, indexes[0], (double)i/divisions, time_left, words_per_sec);
+               i, indexes[0], (double)i/divisions, time_left, words_per_sec);
+        
+        
     }
     
     [self showResults];
