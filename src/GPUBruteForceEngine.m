@@ -111,11 +111,8 @@
 
     // Start a compute pass.
     id<MTLComputeCommandEncoder> computeEncoder;
-    
     NSUInteger total_size = 0;
-    for (int i = 1; i <= _word_length; i++)
-        total_size += (NSUInteger)(pow(_char_length, i));
-    total_size--;
+    for (int i = 0; i <= _word_length; i++) total_size += (NSUInteger)(pow(_char_length, i));
     
     unsigned long* indexes = _mBufferIndices.contents;
     unsigned long divisions = total_size / _gridSize;
@@ -136,7 +133,6 @@
         assert(commandBuffer != nil);
         computeEncoder  = [commandBuffer computeCommandEncoder];
         assert(computeEncoder != nil);
-        [self incrIndex:_mBufferIndices];
         [self encodeBruteForceCommand:computeEncoder];
         // Execute the command.
         [computeEncoder endEncoding];
@@ -144,7 +140,6 @@
         [commandBuffer waitUntilCompleted];
         
         if([self verifyResults]) break;
-        
         timespec_get(&after, TIME_UTC);
         diff_av = (after.tv_sec - before.tv_sec);
         time_left = (diff_av / i) * (divisions-i);
@@ -154,12 +149,12 @@
         fputs("\033[A\033[2K",stdout);
         rewind(stdout);
         
-        printf("Pass %lu | Tested %lu words | %f done | est. %.2fs remaining | @ %.2f MH/s\n",
+        printf("Pass %lu | Tested %lu words | %.3f done | est. %.2fs remaining | @ %.2f MH/s\n",
                i, indexes[0], (double)i/divisions, time_left, words_per_sec);
         
         
     }
-    
+
     [self showResults];
 }
 
@@ -178,7 +173,7 @@
     
     MTLSize threadgroupSize = MTLSizeMake(w, h, 1);
     MTLSize gridSize = MTLSizeMake(_gridSize, 1, 1);
-//    printf("%lu", w*h);
+    
     // Encode the compute command.
     [computeEncoder dispatchThreads:gridSize
               threadsPerThreadgroup:threadgroupSize];
@@ -190,15 +185,6 @@
     unsigned long* dataPtr = buffer.contents;
     dataPtr[0] = index;
     dataPtr[1] = 0;
-    
-}
-
-
-- (void) incrIndex: (id<MTLBuffer>) buffer
-{
-    unsigned long* dataPtr = buffer.contents;
-    dataPtr[0] += dataPtr[1];
-    
 }
 
 - (void) generateGPUWords: (id<MTLBuffer>) buffer
@@ -228,11 +214,29 @@
     char* words = buffer.contents;
     char word[_word_length+1] = "";
     char* w = &word[0];
-    
-    for (int i = 0; i < 1024; i+=_word_length) {
+    int n_divs = 12;
+    printf("\n\tStart of word buffer:\n");
+    unsigned long lineBreak = 1;
+    for (int i = 0; i < (64*_word_length); i+=_word_length) {
         w = strncpy(w, words+i, _word_length);
         w[_word_length] = '\0';
         printf("%s ", w);
+        if (lineBreak % n_divs == 0) printf("\n");
+        lineBreak++;
+    }
+    if ((lineBreak-1) % n_divs != 0)    printf("\n");
+    printf("%*s...", (_word_length/2)-3, "");
+    for(int i = 1; i<n_divs;i++)
+        printf("%*s...", (_word_length-2), "");
+    
+    printf("\n");
+    lineBreak = 1;
+    for (unsigned long i = buffer.length-(64*_word_length); i < buffer.length; i+=_word_length) {
+        w = strncpy(w, words+i, _word_length);
+        w[_word_length] = '\0';
+        printf("%s ", w);
+        if (lineBreak % n_divs == 0) printf("\n");
+        lineBreak++;
     }
     
 }
