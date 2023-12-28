@@ -27,7 +27,8 @@ void md5_gen_and_check(uint64_t n) {
     uint16_t shift=0;
     uint8_t len=1;
     // Generate old suffix little-endian format
-    while (old_char_i+2 > 1) {
+    for (int i = 0; i < 16; i++) {
+        if (old_char_i+2 <= 1) break;
         temp = old_char_i / 88;
         if(len <= 4)
             a += (_characters[old_char_i - _char_length*temp] << (shift));
@@ -95,7 +96,7 @@ void get_permutation(uint64_t n) {
 
 
 int main(int argc, const char * argv[]) {
-    uint64_t n1 = 52;
+    uint64_t n1 = 7811231290128734;
     n1 *= 1;
     md5_gen_and_check(n1);
     get_permutation(n1);

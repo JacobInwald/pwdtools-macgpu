@@ -17,13 +17,13 @@ uint32_t H(uint32_t b, uint32_t c, uint32_t d)  { return b ^ c ^ d; };
 uint32_t I(uint32_t b, uint32_t c, uint32_t d)  { return c ^ (b | (~d)); };
 
 uint64_t divu88_2(uint64_t n) {
-        uint64_t q;
-        n >>= 3;
-        q = (n >> 1) + (n >> 2) - (n >> 5) + (n >> 7);
-        q += (q >> 10);
-        q += (q >> 20);
-        q >>= 3;
-        return ((q + ((n - 11*q + 5) >> 4)));
+    uint64_t q;
+    n >>= 3;
+    q = (n >> 1) + (n >> 2) - (n >> 5) + (n >> 7);
+    q += (q >> 10);
+    q += (q >> 20);
+    q >>= 3;
+    return (q + ((n - 11*q + 5) >> 4));
 }
 
 // Use binary integer part of the sines of integers (in radians) as constants// Initialize variables:
@@ -51,20 +51,21 @@ constant uint32_t k_4[] = {
 
 bool md5_gen_and_check(device uint32_t * abcd, uint64_t n) {
     
-    uint32_t a=0,b=0,c=0,d=0;
-    uint32_t e=0,p=0,q=0;
-
-    uint64_t old_char_i =  divu88_2(n); // optimization point
+    uint32_t a=0,b=0,c=0,d=0,e=0,p=0,q=0;
+    
+    uint64_t old_char_i =  divu88_2(n);
     uint64_t new_char_i = n - _char_length*(old_char_i);
     old_char_i--;
-    uint64_t temp = 0;
 
+    // Generate old suffix little-endian format
+    uint64_t temp = 0;
     uint16_t shift=0;
     uint8_t len=1;
-    
-    // Generate old suffix little-endian format
-    while (old_char_i+2 > 1) { // optimization point
+    for (int i = 0; i < 16; i++) {
+        if (old_char_i+2 <= 1) break;
+        
         temp = divu88_2(old_char_i);
+        
         if(len <= 4)
             a += (_characters[old_char_i - _char_length*temp] << (shift));
         else if (len <= 8)
@@ -73,10 +74,12 @@ bool md5_gen_and_check(device uint32_t * abcd, uint64_t n) {
             c += (_characters[old_char_i - _char_length*temp] << (shift));
         else if (len <= 16)
             d += (_characters[old_char_i - _char_length*temp] << (shift));
+        
         old_char_i = temp - 1;
         shift = (shift+8) & 31;
         len++;
     }
+    
     // Append new character
     if(len <= 4)
         a += _characters[new_char_i] << (shift);
