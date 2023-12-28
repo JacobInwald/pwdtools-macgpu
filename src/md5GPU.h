@@ -8,9 +8,7 @@
 #ifndef md5GPU_h
 #define md5GPU_h
 
-// leftrotate function definition
-#define LEFTROTATE(x, c) (((x) << (c)) | ((x) >> (32 - (c))))
+bool md5_check(device uint32_t * abcd, device uint32_t * msg);
 
-void md5_block(device uint32_t * abcd, device uint8_t * msg, size_t initial_len);
-
+bool md5_gen_and_check(device uint32_t * abcd, uint64_t n);
 #endif /* md5GPU_h */

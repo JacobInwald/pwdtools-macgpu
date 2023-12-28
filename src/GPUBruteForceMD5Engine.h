@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GPUBruteForceMD5Engine: NSObject
 - (instancetype) initWithDevice: (id<MTLDevice>) device;
-- (void) prepareData;
+- (void) prepareData: (char*) hash, uint n;
 - (void) sendComputeCommand;
 @end
 

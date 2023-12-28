@@ -10,6 +10,7 @@
 		98841DA92B25E77D00335E4D /* GPUBruteForceMD5Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 98841DA82B25E77D00335E4D /* GPUBruteForceMD5Engine.m */; };
 		98841DAB2B25EC5700335E4D /* md5GPU.metal in Sources */ = {isa = PBXBuildFile; fileRef = 98841DAA2B25EC5700335E4D /* md5GPU.metal */; };
 		989CAD5A2B1E427900A61188 /* GPUBruteForceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 989CAD592B1E427900A61188 /* GPUBruteForceEngine.m */; };
+		98C9887A2B3BA3810075349E /* md5GPU1.metal in Sources */ = {isa = PBXBuildFile; fileRef = 98C988792B3BA3810075349E /* md5GPU1.metal */; };
 		98D08E2B2B1D131C00B771A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D08E2A2B1D131C00B771A3 /* main.m */; };
 		98D08E312B1D132E00B771A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D08E302B1D132E00B771A3 /* CoreGraphics.framework */; };
 		98D08E332B1D133800B771A3 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D08E322B1D133800B771A3 /* Metal.framework */; };
@@ -36,6 +37,7 @@
 		9897991A2B1CED0600C053FF /* pwd_crack.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = pwd_crack.metal; sourceTree = "<group>"; };
 		989CAD592B1E427900A61188 /* GPUBruteForceEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPUBruteForceEngine.m; sourceTree = "<group>"; };
 		989CAD5B2B1E428900A61188 /* GPUBruteForceEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUBruteForceEngine.h; sourceTree = "<group>"; };
+		98C988792B3BA3810075349E /* md5GPU1.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = md5GPU1.metal; sourceTree = "<group>"; };
 		98D08E282B1D131C00B771A3 /* pwdcrack */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pwdcrack; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D08E2A2B1D131C00B771A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		98D08E302B1D132E00B771A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -85,6 +87,7 @@
 				98841DA82B25E77D00335E4D /* GPUBruteForceMD5Engine.m */,
 				98841DAA2B25EC5700335E4D /* md5GPU.metal */,
 				98841DAC2B25EDBF00335E4D /* md5GPU.h */,
+				98C988792B3BA3810075349E /* md5GPU1.metal */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 				98D08E2B2B1D131C00B771A3 /* main.m in Sources */,
 				98841DAB2B25EC5700335E4D /* md5GPU.metal in Sources */,
 				98841DA92B25E77D00335E4D /* GPUBruteForceMD5Engine.m in Sources */,
+				98C9887A2B3BA3810075349E /* md5GPU1.metal in Sources */,
 				98D08E342B1D138700B771A3 /* pwd_crack.metal in Sources */,
 				989CAD5A2B1E427900A61188 /* GPUBruteForceEngine.m in Sources */,
 			);
@@ -198,6 +202,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -227,13 +232,16 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_FAST_MATH = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_STRICT_ALIASING = NO;
+				GCC_UNROLL_LOOPS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -256,6 +264,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -285,8 +294,12 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_FAST_MATH = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_STRICT_ALIASING = NO;
+				GCC_UNROLL_LOOPS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

@@ -14,9 +14,9 @@
 //      3. play with the character array
 //      4. MAKE SURE THAT THE PWD_CRACK FILE REFLECTS ALL CHANGES YOU MAKE
 
-static const int _word_length = 7;
+static const int _word_length = 6;
 static const int _char_length = 88;
-static const char* _tgt_word = "98bf8007a4656507ecf422888d9fbbd6";
+static const char* _tgt_word = "736b19f69aaca691fecd8400294cc383";
 
 
 static const uint _md5_length = 128; // Length in bytes

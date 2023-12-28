@@ -29,12 +29,11 @@
     // Buffers to hold data.
     id<MTLBuffer> _mBufferTgtHash;     //  Holds the hash to crack
     id<MTLBuffer> _mBufferResult;   //  Holds the result of the operation
-    id<MTLBuffer> _mBufferWords;    //  The working space for the GPU
-    id<MTLBuffer> _mBufferHashes;   //  The working space for hash generation
+//    id<MTLBuffer> _mBufferWords;    //  The working space for the GPU
     id<MTLBuffer> _mBufferIndices;  //  Tells each kernel which permutation number they are (may change this)
     
     unsigned long long _gridSize;
-    
+    unsigned int _pwd_size;
 }
 
 - (instancetype) initWithDevice: (id<MTLDevice>) device
@@ -89,20 +88,19 @@
     return self;
 }
 
-- (void) prepareData
+- (void) prepareData: (char*) hash, uint n
 {
+    _pwd_size = n;
     // Allocate Buffers
     _mBufferTgtHash = [_mDevice newBufferWithLength:_md5_length options:MTLResourceStorageModeShared];
-    _mBufferResult = [_mDevice newBufferWithLength:_word_length options:MTLResourceStorageModeShared];
+    _mBufferResult = [_mDevice newBufferWithLength:_pwd_size options:MTLResourceStorageModeShared];
     // Working space of the GPU (think it might be too big?)
-    _mBufferWords = [_mDevice newBufferWithLength:_md5_length*_gridSize options:MTLResourceStorageModeShared];
-    _mBufferHashes = [_mDevice newBufferWithLength:4*8*_gridSize options:MTLResourceStorageModeShared];
+//    _mBufferWords = [_mDevice newBufferWithLength:_md5_length*_gridSize options:MTLResourceStorageModeShared];
     _mBufferIndices = [_mDevice newBufferWithLength:_mBruteForcePSA.threadExecutionWidth*_mBruteForcePSA.maxTotalThreadsPerThreadgroup options:MTLResourceStorageModeShared];
     
-    [self setHashBuffer:_mBufferTgtHash, _tgt_word];
+    [self setHashBuffer:_mBufferTgtHash, hash];
     [self setBufferToString:_mBufferResult, "failedfailedfailed"];
-    [self generateGPUWords:_mBufferWords];
-    [self generateGPUWords:_mBufferHashes];
+//    [self generateGPUWords:_mBufferWords];
     [self writeIndex:_mBufferIndices,0];
     
 }
@@ -116,13 +114,13 @@
     // Start a compute pass.
     id<MTLComputeCommandEncoder> computeEncoder;
     NSUInteger total_size = 0;
-    for (int i = 0; i <= _word_length; i++) total_size += (NSUInteger)(pow(_char_length, i));
+    for (int i = 0; i <= _pwd_size; i++) total_size += (NSUInteger)(pow(_char_length, i));
     
     unsigned long* indexes = _mBufferIndices.contents;
     unsigned long divisions = total_size / _gridSize;
     
     printf("-------------------------        PASSWORD CRACKER       -----------------------------\n");
-    printf("Info | total words: %lu | split into %lu divisions\n | terminates at password length %u", total_size, divisions, _word_length);
+    printf("Info | total words: %lu | split into %lu divisions\n | terminates at password length %u", total_size, divisions, _pwd_size);
     printf("\n");
     
     struct timespec before, after;
@@ -130,7 +128,7 @@
     
     timespec_get(&before, 1);
     
-    for(unsigned long i = 1; i <= divisions+1; i++) {
+    for(unsigned long i = 1; i <= divisions; i++) {
         
         // End the compute pass._mBufferIndices.contents[0]);
         commandBuffer = [_mCommandQueue commandBuffer];
@@ -168,9 +166,7 @@
     [computeEncoder setComputePipelineState:_mBruteForcePSA];
     [computeEncoder setBuffer:_mBufferTgtHash offset:0 atIndex:0];
     [computeEncoder setBuffer:_mBufferResult offset:0 atIndex:1];
-    [computeEncoder setBuffer:_mBufferWords offset:0 atIndex:2];
-    [computeEncoder setBuffer:_mBufferHashes offset:0 atIndex:3];
-    [computeEncoder setBuffer:_mBufferIndices offset:0 atIndex:4];
+    [computeEncoder setBuffer:_mBufferIndices offset:0 atIndex:2];
     
     
     NSUInteger w = _mBruteForcePSA.threadExecutionWidth;
@@ -208,7 +204,7 @@
 {
     char* dataPtr = buffer.contents;
     
-    for (int i = 0; i < _word_length; i++)
+    for (int i = 0; i < _pwd_size; i++)
     {
         dataPtr[i] = hash[i];
     }
@@ -225,7 +221,7 @@
         hashes[2][i] = hash[i+16];
         hashes[3][i] = hash[i+24];
     }
-    
+        
     hashes[0][8] = '\0';
     hashes[1][8] = '\0';
     hashes[2][8] = '\0';
@@ -254,9 +250,9 @@
         lineBreak++;
     }
     if ((lineBreak-1) % n_divs != 0)    printf("\n");
-    printf("%*s...", (_word_length/2)-3, "");
+    printf("%*s...", (_pwd_size/2)-3, "");
     for(int i = 1; i<n_divs;i++)
-        printf("%*s...", (_word_length-2), "");
+        printf("%*s...", (_pwd_size-2), "");
     
     printf("\n");
     lineBreak = 1;
@@ -273,7 +269,7 @@
 - (bool) verifyResults
 {
     char* result = _mBufferResult.contents;
-    return (strncmp(result, "failedfailedfailed", _word_length) != 0);
+    return (strncmp(result, "failedfailedfailed", _pwd_size) != 0);
 }
 
 - (void) showResults
@@ -282,7 +278,7 @@
     char* result = _mBufferResult.contents;
     uint32_t* hash = _mBufferTgtHash.contents;
     unsigned long* index = _mBufferIndices.contents;
-    [self printGPUMem:_mBufferWords];
+//    [self printGPUMem:_mBufferWords];
     printf("\n");
     printf("%s ", result);
     
