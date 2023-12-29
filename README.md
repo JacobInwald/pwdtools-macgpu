@@ -27,11 +27,13 @@ A GPU-accelerated password cracking tool that utilizes the Metal framework for p
 
 ## Usage
 
-1. Modify the `constants.h` file to set the desired password length and character set, ensure these changes are reflected in the `pwdcrack.metal` file.
+1. Modify the `constants.h` and `md5GPU.h` file to set the character set and character set length to use.
 
-2. Run the project.
+2. Build the project.
 
-3. The program will start cracking passwords using the GPU. The progress and estimated time remaining will be displayed in the console.
+3. Navigate to the exes directory and run ```./pwdcrack <hash> <search depth>```
+
+4. Wait for it to finish!!
 
 ## Contributing
 
