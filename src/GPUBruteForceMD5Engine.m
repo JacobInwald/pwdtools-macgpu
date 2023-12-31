@@ -82,7 +82,7 @@
         }
         
         
-        _gridSize = 512*_mBruteForcePSA.threadExecutionWidth*_mBruteForcePSA.maxTotalThreadsPerThreadgroup;
+        _gridSize = 128*_mBruteForcePSA.threadExecutionWidth*_mBruteForcePSA.maxTotalThreadsPerThreadgroup;
     }
 
     return self;

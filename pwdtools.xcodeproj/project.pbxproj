@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		98841DA92B25E77D00335E4D /* GPUBruteForceMD5Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 98841DA82B25E77D00335E4D /* GPUBruteForceMD5Engine.m */; };
 		98841DAB2B25EC5700335E4D /* md5GPU.metal in Sources */ = {isa = PBXBuildFile; fileRef = 98841DAA2B25EC5700335E4D /* md5GPU.metal */; };
-		989CAD5A2B1E427900A61188 /* GPUBruteForceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 989CAD592B1E427900A61188 /* GPUBruteForceEngine.m */; };
-		98C9887A2B3BA3810075349E /* md5GPU1.metal in Sources */ = {isa = PBXBuildFile; fileRef = 98C988792B3BA3810075349E /* md5GPU1.metal */; };
 		98D08E2B2B1D131C00B771A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D08E2A2B1D131C00B771A3 /* main.m */; };
 		98D08E312B1D132E00B771A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D08E302B1D132E00B771A3 /* CoreGraphics.framework */; };
 		98D08E332B1D133800B771A3 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D08E322B1D133800B771A3 /* Metal.framework */; };
@@ -35,9 +33,6 @@
 		98841DAA2B25EC5700335E4D /* md5GPU.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = md5GPU.metal; sourceTree = "<group>"; };
 		98841DAC2B25EDBF00335E4D /* md5GPU.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = md5GPU.h; sourceTree = "<group>"; };
 		9897991A2B1CED0600C053FF /* pwd_crack.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = pwd_crack.metal; sourceTree = "<group>"; };
-		989CAD592B1E427900A61188 /* GPUBruteForceEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPUBruteForceEngine.m; sourceTree = "<group>"; };
-		989CAD5B2B1E428900A61188 /* GPUBruteForceEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUBruteForceEngine.h; sourceTree = "<group>"; };
-		98C988792B3BA3810075349E /* md5GPU1.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = md5GPU1.metal; sourceTree = "<group>"; };
 		98D08E282B1D131C00B771A3 /* pwdcrack */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pwdcrack; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D08E2A2B1D131C00B771A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		98D08E302B1D132E00B771A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -80,14 +75,11 @@
 			children = (
 				9897991A2B1CED0600C053FF /* pwd_crack.metal */,
 				98D08E2A2B1D131C00B771A3 /* main.m */,
-				989CAD592B1E427900A61188 /* GPUBruteForceEngine.m */,
-				989CAD5B2B1E428900A61188 /* GPUBruteForceEngine.h */,
 				98D08E382B1D48E800B771A3 /* constants.h */,
 				98841DA72B25E76500335E4D /* GPUBruteForceMD5Engine.h */,
 				98841DA82B25E77D00335E4D /* GPUBruteForceMD5Engine.m */,
 				98841DAA2B25EC5700335E4D /* md5GPU.metal */,
 				98841DAC2B25EDBF00335E4D /* md5GPU.h */,
-				98C988792B3BA3810075349E /* md5GPU1.metal */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -161,9 +153,7 @@
 				98D08E2B2B1D131C00B771A3 /* main.m in Sources */,
 				98841DAB2B25EC5700335E4D /* md5GPU.metal in Sources */,
 				98841DA92B25E77D00335E4D /* GPUBruteForceMD5Engine.m in Sources */,
-				98C9887A2B3BA3810075349E /* md5GPU1.metal in Sources */,
 				98D08E342B1D138700B771A3 /* pwd_crack.metal in Sources */,
-				989CAD5A2B1E427900A61188 /* GPUBruteForceEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,15 +215,20 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_X86_VECTOR_INSTRUCTIONS = default;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_CHAR_IS_UNSIGNED_CHAR = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_ENABLE_KERNEL_DEVELOPMENT = NO;
 				GCC_FAST_MATH = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -249,6 +244,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_COMPILER_FLAGS = "";
+				MTL_ENABLE_INDEX_STORE = YES;
+				MTL_ENABLE_MODULES = YES;
+				MTL_HEADER_SEARCH_PATHS = "";
+				MTL_LANGUAGE_REVISION = Metal31;
+				MTL_OPTIMIZATION_LEVEL = default;
+				MTL_PREPROCESSOR_DEFINITIONS = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -287,15 +289,20 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_X86_VECTOR_INSTRUCTIONS = default;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_CHAR_IS_UNSIGNED_CHAR = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_ENABLE_KERNEL_DEVELOPMENT = NO;
 				GCC_FAST_MATH = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_STRICT_ALIASING = NO;
@@ -307,6 +314,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_COMPILER_FLAGS = "";
+				MTL_ENABLE_INDEX_STORE = YES;
+				MTL_ENABLE_MODULES = YES;
+				MTL_HEADER_SEARCH_PATHS = "";
+				MTL_LANGUAGE_REVISION = Metal31;
+				MTL_OPTIMIZATION_LEVEL = default;
+				MTL_PREPROCESSOR_DEFINITIONS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
