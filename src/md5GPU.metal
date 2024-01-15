@@ -50,7 +50,9 @@ bool md5_gen_and_check(device uint32_t * abcd, uint64_t n) {
     uint32_t a=0,b=0,c=0,d=0,e=0,p=0,q=0;
     
     uint64_t old_char_i = n >> 6;
+    old_char_i = divu88(n);
     uint64_t new_char_i = n & 63;
+    new_char_i = n - _char_length*old_char_i;
     old_char_i--;
 
     // Generate old suffix little-endian format
@@ -60,31 +62,31 @@ bool md5_gen_and_check(device uint32_t * abcd, uint64_t n) {
     for (len=1; len <= 16; len++) {
         if (old_char_i+2 <= 1) break;
     
-//        temp = divu88(old_char_i);
-//       
-//        if(len <= 4)
-//            a += (_characters[old_char_i - _char_length*temp] << shift);
-//        else if (len <= 8)
-//            b += (_characters[old_char_i - _char_length*temp] << shift);
-//        else if (len <= 12)
-//            c += (_characters[old_char_i - _char_length*temp] << shift);
-//        else if (len <= 16)
-//            d += (_characters[old_char_i - _char_length*temp] << shift);
-// 
-//        old_char_i = temp - 1;
-        
-        temp = old_char_i >> 6;
+        temp = divu88(old_char_i);
        
         if(len <= 4)
-            a += (_characters[temp & 63] << shift);
+            a += (_characters [old_char_i - _char_length*temp] << shift);
         else if (len <= 8)
-            b += (_characters[temp & 63] << shift);
+            b += (_characters[old_char_i - _char_length*temp] << shift);
         else if (len <= 12)
-            c += (_characters[temp & 63] << shift);
+            c += (_characters[old_char_i - _char_length*temp] << shift);
         else if (len <= 16)
-            d += (_characters[temp & 63] << shift);
+            d += (_characters[old_char_i - _char_length*temp] << shift);
  
-        temp--;
+        old_char_i = temp - 1;
+        
+//        temp = old_char_i >> 6;
+//       
+//        if(len <= 4)
+//            a += (_characters[temp & 63] << shift);
+//        else if (len <= 8)
+//            b += (_characters[temp & 63] << shift);
+//        else if (len <= 12)
+//            c += (_characters[temp & 63] << shift);
+//        else if (len <= 16)
+//            d += (_characters[temp & 63] << shift);
+// 
+//        temp--;
         shift = (shift+8) & 31;
     }
     

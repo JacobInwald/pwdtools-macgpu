@@ -14,7 +14,7 @@
 //      3. play with the character array
 //      4. MAKE SURE THAT THE PWD_CRACK FILE REFLECTS ALL CHANGES YOU MAKE
 
-static const int _char_length = 64;
+static const int _char_length = 88;
 static const uint _md5_length = 128; // Length in bytes
 
 #endif
